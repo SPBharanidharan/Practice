@@ -1,26 +1,41 @@
+using System.Text;
+using AutoMapper;
 
-using InterviewPanelManagementTool.Application.Interfaces;
-using InterviewPanelManagementTool.Application.Services;
-using InterviewPanelManagementTool.Infrastructure.DataConfiguration.DataContext;
-using InterviewPanelManagementTool.Infrastructure.Repositories;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System.Text;
+
 using InterviewPanelManagementTool.API.Services;
+using InterviewPanelManagementTool.Application.AutoMapper;
+using InterviewPanelManagementTool.Application.Interfaces;
+using InterviewPanelManagementTool.Application.Interfaces.Repositories;
+using InterviewPanelManagementTool.Application.Interfaces.Services;
+using InterviewPanelManagementTool.Application.Services;
+using InterviewPanelManagementTool.Application.Services.RescheduleRequests;
+using InterviewPanelManagementTool.Infrastructure.DataConfiguration.DataContext;
+using InterviewPanelManagementTool.Infrastructure.Repositories;
+
 
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+   options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection")
+    )
+);
+
 
 builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IPasswordHasherService, PasswordHasherService>();
 builder.Services.AddScoped<IAdminService, AdminService>();
+builder.Services.AddScoped<IRescheduleRequestService, RescheduleRequestService>();
+builder.Services.AddScoped<IRescheduleRequestRepository, RescheduleRequestRepository>();
+builder.Services.AddScoped<IPracticeService, PracticeService>();
+builder.Services.AddScoped<IPracticeRepository, PracticeRepository>();
 
 builder.Services.AddControllers();
 
@@ -46,8 +61,12 @@ builder.Services.AddAuthentication(options =>
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
     };
 });
+builder.Services.AddAutoMapper(
+    typeof(InterviewPanelManagementTool.Application.MappingProfiles.MemberAvailabilityProfile).Assembly
+);
 
 builder.Services.AddAuthorization();
+builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
@@ -67,6 +86,10 @@ builder.Services.AddSwaggerGen(c =>
     c.AddSecurityDefinition("Bearer", securityScheme);
 
     var securityReq = new OpenApiSecurityRequirement
+
+
+
+
     {
         {
             new OpenApiSecurityScheme
@@ -77,8 +100,7 @@ builder.Services.AddSwaggerGen(c =>
         }
     };
     c.AddSecurityRequirement(securityReq);
-});
-
+});             
 
 builder.Services.AddCors(options =>
 {
@@ -91,17 +113,8 @@ builder.Services.AddCors(options =>
         });
 });
 
-builder.Services.AddAutoMapper(
-    typeof(InterviewPanelManagementTool.Application.MappingProfiles.MemberAvailabilityProfile).Assembly
-);
 
 var app = builder.Build();
-
-
-
-
-
-
 
 if (app.Environment.IsDevelopment())
 {

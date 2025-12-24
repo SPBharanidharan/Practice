@@ -4,6 +4,8 @@ using System.Text;
 using InterviewPanelManagementTool.Application.Interfaces;
 using InterviewPanelManagementTool.Domain.Entities;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.Extensions.Configuration;
+
 
 namespace InterviewPanelManagementTool.API.Services
 {
@@ -20,7 +22,9 @@ namespace InterviewPanelManagementTool.API.Services
         {
             var claims = new List<Claim>
             {
+
                 new Claim(JwtRegisteredClaimNames.Sub, user.UserId.ToString()),
+
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
                 new Claim(ClaimTypes.Role, user.Role.ToString()),
                 new Claim("UserName", user.UserName)
@@ -37,6 +41,7 @@ namespace InterviewPanelManagementTool.API.Services
                 audience: _configuration["Jwt:Audience"],
                 claims: claims,
                 expires: DateTime.UtcNow.AddHours(4),
+
                 signingCredentials: credentials
             );
             return new JwtSecurityTokenHandler().WriteToken(token);

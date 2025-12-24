@@ -1,6 +1,5 @@
 using System;
 
-
 namespace InterviewPanelManagementTool.Application.DTOs.MemberAvailability;
 
 public class MemberAvailabilityCreateDto

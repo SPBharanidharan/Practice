@@ -11,6 +11,7 @@ public class MemberAvailabilityConfiguration : IEntityTypeConfiguration<MemberAv
         builder.HasKey(a => a.AvailabilityId);
 
 
+
         builder.Property(a => a.CreatedDate)
        .HasDefaultValueSql("GETDATE()");
 
@@ -18,6 +19,7 @@ public class MemberAvailabilityConfiguration : IEntityTypeConfiguration<MemberAv
         builder.Property(a => a.Date).IsRequired();
         builder.Property(a => a.StartTime).IsRequired();
         builder.Property(a => a.EndTime).IsRequired();
+
 
 
         builder.HasIndex(a => new 
@@ -29,6 +31,7 @@ public class MemberAvailabilityConfiguration : IEntityTypeConfiguration<MemberAv
               "CK_MemberAvailability_Time",
               "[EndTime] > [StartTime]");
         });
+
 
         builder.HasOne(a => a.Member)
                .WithMany(u => u.MemberAvailabilities)

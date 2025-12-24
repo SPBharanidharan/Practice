@@ -6,6 +6,7 @@ namespace InterviewPanelManagementTool.Infrastructure.DataConfiguration.EntityTy
 
 public class PositionConfiguration : IEntityTypeConfiguration<Position>
 {
+
        public void Configure(EntityTypeBuilder<Position> builder)
        {
               builder.HasKey(p => p.PositionId);
@@ -41,5 +42,6 @@ public class PositionConfiguration : IEntityTypeConfiguration<Position>
                      .OnDelete(DeleteBehavior.Restrict);
 
        }
+
 
 }

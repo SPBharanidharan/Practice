@@ -18,9 +18,14 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
                .IsRequired()
                .HasMaxLength(100);
 
+        builder.Property(u => u.Email)
+               .IsRequired()
+               .HasMaxLength(150);
+
         builder.Property(u => u.Passwordhash)
                .IsRequired()
                .HasMaxLength(16);
+
 
 
         builder.Property(u => u.Role)
@@ -29,6 +34,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         
         builder.Property(u => u.CreatedAt)
               .HasDefaultValueSql("GETDATE()");
+
 
 
         builder.HasOne(u => u.CreatedByUser)

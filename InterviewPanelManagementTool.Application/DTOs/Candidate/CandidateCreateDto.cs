@@ -9,4 +9,5 @@ public class CandidateCreateDto
     public int PracticeId { get; set; }
     public int PositionId { get; set; }
 
+
 }
