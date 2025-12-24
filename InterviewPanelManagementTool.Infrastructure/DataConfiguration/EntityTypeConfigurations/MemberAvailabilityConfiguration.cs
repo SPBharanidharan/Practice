@@ -10,18 +10,19 @@ public class MemberAvailabilityConfiguration : IEntityTypeConfiguration<MemberAv
     {
         builder.HasKey(a => a.AvailabilityId);
 
+
         builder.Property(a => a.CreatedDate)
        .HasDefaultValueSql("GETDATE()");
+
 
         builder.Property(a => a.Date).IsRequired();
         builder.Property(a => a.StartTime).IsRequired();
         builder.Property(a => a.EndTime).IsRequired();
 
+
         builder.HasIndex(a => new 
               { a.MemberId, a.Date, a.StartTime, a.EndTime })
               .IsUnique();
-
-       // Prevent invalid time ranges
         builder.ToTable(t =>
         {
               t.HasCheckConstraint(

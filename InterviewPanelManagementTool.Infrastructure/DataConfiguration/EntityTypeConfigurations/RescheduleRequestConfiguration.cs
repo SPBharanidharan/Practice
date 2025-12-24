@@ -29,6 +29,9 @@ public class RescheduleRequestConfiguration : IEntityTypeConfiguration<Reschedul
                .HasConversion<int>()
                .IsRequired();
 
+        builder.Property(r => r.Reason)
+               .HasMaxLength(250);
+
         builder.Property(r => r.ProposedDate).IsRequired();
         builder.Property(r => r.NewStartTime).IsRequired();
         builder.Property(r => r.NewEndTime).IsRequired();

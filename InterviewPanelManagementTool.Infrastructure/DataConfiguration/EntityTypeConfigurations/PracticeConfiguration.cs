@@ -13,6 +13,7 @@ public class PracticeConfiguration : IEntityTypeConfiguration<Practice>
         builder.HasIndex(p => p.PracticeName)
                .IsUnique();
 
+
         builder.Property(p => p.IsActive).HasDefaultValue(true);
         builder.Property(p => p.CreatedAt).HasDefaultValueSql("GETDATE()");
 
@@ -30,11 +31,14 @@ public class PracticeConfiguration : IEntityTypeConfiguration<Practice>
                .WithOne(b => b.Practice)
                .HasForeignKey(b => b.PracticeId)
                .OnDelete(DeleteBehavior.Restrict);
+<<<<<<< HEAD
        
         builder.HasMany(p => p.Candidates)
                .WithOne(c => c.Practice)
                .HasForeignKey(c => c.PracticeId)
                .OnDelete(DeleteBehavior.Restrict);
 
+=======
+>>>>>>> branch2
     }
 }

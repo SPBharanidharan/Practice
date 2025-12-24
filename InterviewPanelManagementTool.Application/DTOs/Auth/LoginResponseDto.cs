@@ -11,4 +11,5 @@ public class LoginResponseDto
     public UserRole Role { get; set; }
     public string Token { get; set; } = null!;   // JWT token or session token
     public bool IsFirstLogin { get; set; }
+
 }

@@ -10,8 +10,10 @@ public class CandidateConfiguration : IEntityTypeConfiguration<Candidate>
     {
         builder.HasKey(c => c.CandidateId);
 
+
         builder.Property(c => c.CreatedAt)
               .HasDefaultValueSql("GETDATE()");
+
 
         builder.Property(c => c.Name)
                .IsRequired()

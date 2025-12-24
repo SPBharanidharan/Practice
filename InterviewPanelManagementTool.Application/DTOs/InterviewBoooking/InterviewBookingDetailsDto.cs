@@ -9,6 +9,7 @@ public class InterviewBookingDetailsDto
     public string MemberName { get; set; } = null!;
     public string AdminName { get; set; } = null!;
     public string CandidateName { get; set; } = null!;
+
     public DateOnly Date { get; set; }
     public TimeOnly StartTime { get; set; }
     public TimeOnly EndTime { get; set; }

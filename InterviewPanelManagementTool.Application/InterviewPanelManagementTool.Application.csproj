@@ -13,6 +13,15 @@
     <Folder Include="DTOs\Practice\" />
     <Folder Include="DTOs\RescheduleRequest\" />
     <Folder Include="Interfaces\" />
+    <Folder Include="DTOs\" />
+    <Folder Include="DTOs\Auth\" />
+    <Folder Include="DTOs\Candidate\" />
+    <Folder Include="DTOs\InterviewBoooking\" />
+    <Folder Include="DTOs\RescheduleRequest\" />
+    <Folder Include="DTOs\User\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="MappingProfiles\" />
+
     <Folder Include="Services\" />
   </ItemGroup>
 
@@ -21,8 +30,11 @@
   </ItemGroup>
 
   <ItemGroup>
+
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="10.0.1" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.15.0" />
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+
   </ItemGroup>
 
 </Project>

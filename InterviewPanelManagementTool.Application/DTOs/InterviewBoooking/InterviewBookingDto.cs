@@ -12,6 +12,7 @@ public class InterviewBookingDto
     public int CandidateId { get; set; }
     public int PracticeId { get; set; }
     public int PositionId { get; set; }
+
     public InterviewBookingStatus Status { get; set; }
     public DateTime CreatedDate { get; set; }
 }

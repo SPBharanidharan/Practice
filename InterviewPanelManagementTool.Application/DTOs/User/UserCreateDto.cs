@@ -12,4 +12,5 @@ public class UserCreateDto
     public int? PracticeId { get; set; }
     public int? DesignationPositionId { get; set; }
 
+
 }

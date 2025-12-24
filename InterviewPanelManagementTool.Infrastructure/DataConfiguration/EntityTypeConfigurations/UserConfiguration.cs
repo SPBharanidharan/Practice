@@ -10,8 +10,18 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
     {
         builder.HasKey(u => u.UserId);
 
+
         builder.HasIndex(u => u.Email)
                .IsUnique();
+
+        builder.Property(u => u.UserName)
+               .IsRequired()
+               .HasMaxLength(100);
+
+        builder.Property(u => u.Passwordhash)
+               .IsRequired()
+               .HasMaxLength(16);
+
 
         builder.Property(u => u.Role)
                .HasConversion<int>()
@@ -19,6 +29,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         
         builder.Property(u => u.CreatedAt)
               .HasDefaultValueSql("GETDATE()");
+
 
         builder.HasOne(u => u.CreatedByUser)
                .WithMany(u => u.CreatedUsers)

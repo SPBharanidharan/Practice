@@ -1,3 +1,4 @@
+
 using InterviewPanelManagementTool.Application.Interfaces;
 using InterviewPanelManagementTool.Application.Services;
 using InterviewPanelManagementTool.Infrastructure.DataConfiguration.DataContext;
@@ -8,6 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using InterviewPanelManagementTool.API.Services;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -89,8 +91,17 @@ builder.Services.AddCors(options =>
         });
 });
 
+builder.Services.AddAutoMapper(
+    typeof(InterviewPanelManagementTool.Application.MappingProfiles.MemberAvailabilityProfile).Assembly
+);
 
 var app = builder.Build();
+
+
+
+
+
+
 
 if (app.Environment.IsDevelopment())
 {
@@ -104,6 +115,9 @@ app.UseCors("AllowAngular");
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapControllers();
+
 
 app.MapControllers();
 

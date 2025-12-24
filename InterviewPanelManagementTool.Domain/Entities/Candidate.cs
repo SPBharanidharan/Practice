@@ -15,6 +15,7 @@ public class Candidate
     public int PositionId { get; set; }
     public DateTime CreatedAt { get; set; }
 
+
     public Practice Practice { get; set; } = null!;
     public Position Position { get; set; } = null!;
     public ICollection<InterviewBooking> InterviewBookings { get; set; } = new List<InterviewBooking>();

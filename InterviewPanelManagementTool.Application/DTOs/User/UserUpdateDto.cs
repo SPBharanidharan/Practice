@@ -11,4 +11,5 @@ public class UserUpdateDto
     public bool? IsActive { get; set; }
     public int? PracticeId { get; set; }
     public int? DesignationPositionId { get; set; }
+
 }

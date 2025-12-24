@@ -41,4 +41,5 @@ public class PositionConfiguration : IEntityTypeConfiguration<Position>
                      .OnDelete(DeleteBehavior.Restrict);
 
        }
+
 }
