@@ -31,14 +31,13 @@ public class PracticeConfiguration : IEntityTypeConfiguration<Practice>
                .WithOne(b => b.Practice)
                .HasForeignKey(b => b.PracticeId)
                .OnDelete(DeleteBehavior.Restrict);
-<<<<<<< HEAD
+
        
         builder.HasMany(p => p.Candidates)
                .WithOne(c => c.Practice)
                .HasForeignKey(c => c.PracticeId)
                .OnDelete(DeleteBehavior.Restrict);
 
-=======
->>>>>>> branch2
+
     }
 }
