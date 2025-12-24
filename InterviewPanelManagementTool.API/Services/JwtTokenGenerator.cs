@@ -6,7 +6,6 @@ using InterviewPanelManagementTool.Domain.Entities;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Configuration;
 
-
 namespace InterviewPanelManagementTool.API.Services
 {
     public class JwtTokenGenerator : IJwtTokenGenerator

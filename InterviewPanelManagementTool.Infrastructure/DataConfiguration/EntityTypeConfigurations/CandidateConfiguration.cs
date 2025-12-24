@@ -13,7 +13,6 @@ public class CandidateConfiguration : IEntityTypeConfiguration<Candidate>
         builder.Property(c => c.CreatedAt)
               .HasDefaultValueSql("GETDATE()");
 
-
         builder.Property(c => c.Name)
                .IsRequired()
                .HasMaxLength(100);

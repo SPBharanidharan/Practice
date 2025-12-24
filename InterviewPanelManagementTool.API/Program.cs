@@ -1,3 +1,4 @@
+
 using System.Text;
 using AutoMapper;
 
@@ -5,6 +6,11 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using System.Text;
 
 using InterviewPanelManagementTool.API.Services;
 using InterviewPanelManagementTool.Application.AutoMapper;
@@ -15,6 +21,7 @@ using InterviewPanelManagementTool.Application.Services;
 using InterviewPanelManagementTool.Application.Services.RescheduleRequests;
 using InterviewPanelManagementTool.Infrastructure.DataConfiguration.DataContext;
 using InterviewPanelManagementTool.Infrastructure.Repositories;
+
 
 
 
@@ -36,6 +43,18 @@ builder.Services.AddScoped<IRescheduleRequestService, RescheduleRequestService>(
 builder.Services.AddScoped<IRescheduleRequestRepository, RescheduleRequestRepository>();
 builder.Services.AddScoped<IPracticeService, PracticeService>();
 builder.Services.AddScoped<IPracticeRepository, PracticeRepository>();
+
+
+#region MemberAvailbulity Dependency Injection
+builder.Services.AddScoped<IMemberAvailabilityRepository, MemberAvailabilityRepository>();
+builder.Services.AddScoped<IMemberAvailabilityService, MemberAvailabilityService>();
+#endregion
+
+#region AutoMapper dependency InjectionConfiguration 
+builder.Services.AddAutoMapper(
+    typeof(InterviewPanelManagementTool.Application.MappingProfiles.MemberAvailabilityProfile).Assembly
+);
+#endregion
 
 builder.Services.AddControllers();
 
@@ -61,9 +80,6 @@ builder.Services.AddAuthentication(options =>
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
     };
 });
-builder.Services.AddAutoMapper(
-    typeof(InterviewPanelManagementTool.Application.MappingProfiles.MemberAvailabilityProfile).Assembly
-);
 
 builder.Services.AddAuthorization();
 builder.Services.AddControllers();
@@ -86,10 +102,6 @@ builder.Services.AddSwaggerGen(c =>
     c.AddSecurityDefinition("Bearer", securityScheme);
 
     var securityReq = new OpenApiSecurityRequirement
-
-
-
-
     {
         {
             new OpenApiSecurityScheme
@@ -112,7 +124,6 @@ builder.Services.AddCors(options =>
                   .AllowAnyMethod();
         });
 });
-
 
 var app = builder.Build();
 

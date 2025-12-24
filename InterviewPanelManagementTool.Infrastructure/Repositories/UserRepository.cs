@@ -40,10 +40,13 @@ public class UserRepository : IUserRepository
     public async Task UpdateAsync(User user)
     {
         _context.Users.Update(user);
+<<<<<<< HEAD
     }
     
     public async Task SaveChangesAsync()
     {
+=======
+>>>>>>> branch4
         await _context.SaveChangesAsync();
     }
 }

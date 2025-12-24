@@ -8,6 +8,4 @@ public class CandidateCreateDto
     public string Name { get; set; } = null!;
     public int PracticeId { get; set; }
     public int PositionId { get; set; }
-
-
 }

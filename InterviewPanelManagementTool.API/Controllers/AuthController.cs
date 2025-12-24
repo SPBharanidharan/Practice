@@ -33,8 +33,6 @@ namespace InterviewPanelManagementTool.API.Controllers
 
         [Authorize]
         [HttpPost("logout")]
-
-        [Authorize]
         public IActionResult Logout()
         {
             return Ok(new { message = "Logged out successfully. Please remove token from client." });

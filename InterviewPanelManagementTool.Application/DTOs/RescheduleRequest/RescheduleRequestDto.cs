@@ -13,7 +13,6 @@ public class RescheduleRequestDto
     public RescheduleStatus Status { get; set; }
     public int? ProcessedByAdminId { get; set; }
     public DateTime? ProcessedDate { get; set; }
-
     public DateOnly ProposedDate { get; set; }
     public TimeOnly NewStartTime { get; set; }
     public TimeOnly NewEndTime { get; set; }

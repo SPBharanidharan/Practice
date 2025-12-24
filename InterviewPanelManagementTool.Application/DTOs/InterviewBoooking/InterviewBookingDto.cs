@@ -6,7 +6,6 @@ namespace InterviewPanelManagementTool.Application.DTOs.InterviewBoooking;
 public class InterviewBookingDto
 {
     public int BookingId { get; set; }
-<<<<<<< HEAD
     public int MemberId { get; set; }
     public int AdminId { get; set; }
     public int AvailabilityId { get; set; }

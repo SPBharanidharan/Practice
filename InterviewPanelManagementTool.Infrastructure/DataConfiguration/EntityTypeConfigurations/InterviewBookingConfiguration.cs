@@ -14,7 +14,6 @@ public class InterviewBookingConfiguration : IEntityTypeConfiguration<InterviewB
               builder.Property(b => b.CreatedDate)
                      .HasDefaultValueSql("GETDATE()");
 
-
               builder.HasOne(b => b.Member)
                      .WithMany(u => u.BookingsForMember)
                      .HasForeignKey(b => b.MemberId)
