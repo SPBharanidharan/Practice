@@ -1,6 +1,5 @@
 using InterviewPanelManagementTool.Application.DTOs.Practice;
-using InterviewPanelManagementTool.Application.Interfaces.Services;
-using InterviewPanelManagementTool.Application.Interfaces.Repositories;
+using InterviewPanelManagementTool.Application.Interfaces;
 using InterviewPanelManagementTool.Domain.Entities;
 using AutoMapper;
 

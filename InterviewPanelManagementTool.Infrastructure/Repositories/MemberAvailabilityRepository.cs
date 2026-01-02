@@ -25,7 +25,7 @@ public class MemberAvailabilityRepository : IMemberAvailabilityRepository
     public async Task AddMemberAsync(MemberAvailability memberAvailability)
     {
         await _context.MemberAvailabilities.AddAsync(memberAvailability);
-        await _context.SaveChangesAsync();
+        await SaveChanges();
     }
 
 
@@ -43,6 +43,22 @@ public class MemberAvailabilityRepository : IMemberAvailabilityRepository
     public async Task UpdateAvailabilityAsync(MemberAvailability memberAvailability)
     {
         _context.MemberAvailabilities.Update(memberAvailability);
+        await SaveChanges();
+    }
+
+    public async Task SaveChanges()
+    {
         await _context.SaveChangesAsync();
+    }
+
+    public async Task CancelAvailabilityAsync(MemberAvailability memberAvailability)
+    {
+        _context.MemberAvailabilities.Remove(memberAvailability);
+        await SaveChanges();
+    }
+
+    public async Task<List<MemberAvailability>> GetAllAsync()
+    {
+        return await _context.MemberAvailabilities.ToListAsync();
     }
 }

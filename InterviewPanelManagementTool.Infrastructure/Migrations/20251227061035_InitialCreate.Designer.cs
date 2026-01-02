@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InterviewPanelManagementTool.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251218071422_InitialCreate")]
+    [Migration("20251227061035_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -314,7 +314,8 @@ namespace InterviewPanelManagementTool.Infrastructure.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -324,7 +325,8 @@ namespace InterviewPanelManagementTool.Infrastructure.Migrations
 
                     b.Property<string>("Passwordhash")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(16)
+                        .HasColumnType("nvarchar(16)");
 
                     b.Property<int?>("PracticeId")
                         .HasColumnType("int");
@@ -334,7 +336,8 @@ namespace InterviewPanelManagementTool.Infrastructure.Migrations
 
                     b.Property<string>("UserName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("UserId");
 

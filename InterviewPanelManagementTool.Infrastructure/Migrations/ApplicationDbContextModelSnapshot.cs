@@ -79,13 +79,9 @@ namespace InterviewPanelManagementTool.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
-<<<<<<< HEAD
-                        .HasColumnType("datetime2");
-=======
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETDATE()");
->>>>>>> branch4
 
                     b.Property<int>("MemberId")
                         .HasColumnType("int");
@@ -129,13 +125,9 @@ namespace InterviewPanelManagementTool.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
-<<<<<<< HEAD
-                        .HasColumnType("datetime2");
-=======
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETDATE()");
->>>>>>> branch4
 
                     b.Property<DateOnly>("Date")
                         .HasColumnType("date");
@@ -151,11 +143,6 @@ namespace InterviewPanelManagementTool.Infrastructure.Migrations
 
                     b.HasKey("AvailabilityId");
 
-<<<<<<< HEAD
-                    b.HasIndex("MemberId");
-
-                    b.ToTable("MemberAvailabilities");
-=======
                     b.HasIndex("MemberId", "Date", "StartTime", "EndTime")
                         .IsUnique();
 
@@ -163,7 +150,6 @@ namespace InterviewPanelManagementTool.Infrastructure.Migrations
                         {
                             t.HasCheckConstraint("CK_MemberAvailability_Time", "[EndTime] > [StartTime]");
                         });
->>>>>>> branch4
                 });
 
             modelBuilder.Entity("InterviewPanelManagementTool.Domain.Entities.MemberPosition", b =>
@@ -212,12 +198,8 @@ namespace InterviewPanelManagementTool.Infrastructure.Migrations
 
                     b.HasKey("PositionId");
 
-<<<<<<< HEAD
-                    b.HasIndex("PracticeId");
-=======
                     b.HasIndex("PracticeId", "PositionName")
                         .IsUnique();
->>>>>>> branch4
 
                     b.ToTable("Positions");
                 });
@@ -251,12 +233,9 @@ namespace InterviewPanelManagementTool.Infrastructure.Migrations
 
                     b.HasKey("PracticeId");
 
-<<<<<<< HEAD
-=======
                     b.HasIndex("PracticeName")
                         .IsUnique();
 
->>>>>>> branch4
                     b.ToTable("Practices");
                 });
 
@@ -320,13 +299,9 @@ namespace InterviewPanelManagementTool.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
 
                     b.Property<DateTime>("CreatedAt")
-<<<<<<< HEAD
-                        .HasColumnType("datetime2");
-=======
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETDATE()");
->>>>>>> branch4
 
                     b.Property<int?>("CreatedByUserId")
                         .HasColumnType("int");
@@ -336,12 +311,8 @@ namespace InterviewPanelManagementTool.Infrastructure.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-<<<<<<< HEAD
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
-=======
-                        .HasColumnType("nvarchar(450)");
->>>>>>> branch4
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -351,12 +322,8 @@ namespace InterviewPanelManagementTool.Infrastructure.Migrations
 
                     b.Property<string>("Passwordhash")
                         .IsRequired()
-<<<<<<< HEAD
                         .HasMaxLength(16)
                         .HasColumnType("nvarchar(16)");
-=======
-                        .HasColumnType("nvarchar(max)");
->>>>>>> branch4
 
                     b.Property<int?>("PracticeId")
                         .HasColumnType("int");
@@ -366,12 +333,8 @@ namespace InterviewPanelManagementTool.Infrastructure.Migrations
 
                     b.Property<string>("UserName")
                         .IsRequired()
-<<<<<<< HEAD
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
-=======
-                        .HasColumnType("nvarchar(max)");
->>>>>>> branch4
 
                     b.HasKey("UserId");
 
@@ -379,12 +342,9 @@ namespace InterviewPanelManagementTool.Infrastructure.Migrations
 
                     b.HasIndex("DesignationPositionId");
 
-<<<<<<< HEAD
-=======
                     b.HasIndex("Email")
                         .IsUnique();
 
->>>>>>> branch4
                     b.HasIndex("PracticeId");
 
                     b.ToTable("Users");

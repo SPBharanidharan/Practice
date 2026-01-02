@@ -1,6 +1,6 @@
 using InterviewPanelManagementTool.Domain.Entities;
 using InterviewPanelManagementTool.Infrastructure.DataConfiguration.DataContext;
-using InterviewPanelManagementTool.Application.Interfaces.Repositories;
+using InterviewPanelManagementTool.Application.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace InterviewPanelManagementTool.Infrastructure.Repositories;

@@ -19,4 +19,12 @@ public interface IMemberAvailabilityRepository
     Task<MemberAvailability> GetAvailabilityByIdAsync(int availabilityId);
 
     Task UpdateAvailabilityAsync(MemberAvailability memberAvailability);
+
+    Task CancelAvailabilityAsync(MemberAvailability memberAvailability);
+
+    Task<List<MemberAvailability>> GetAllAsync();
+
+
+    //Just for SaveChangesAsync
+    Task SaveChanges();
 }

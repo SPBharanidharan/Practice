@@ -1,6 +1,6 @@
 using InterviewPanelManagementTool.Application.DTOs.Practice;
 
-namespace InterviewPanelManagementTool.Application.Interfaces.Services;
+namespace InterviewPanelManagementTool.Application.Interfaces;
 
 public interface IPracticeService
 {

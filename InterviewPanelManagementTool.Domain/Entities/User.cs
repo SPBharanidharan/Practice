@@ -15,10 +15,7 @@ public class User
     public required string Email { get; set; }
     [Required(ErrorMessage = "Password is required")]
     [MinLength(8, ErrorMessage = "Password must be atleast 8 characters")]
-<<<<<<< HEAD
     [MaxLength(16, ErrorMessage = "Password cannot exceeded 16 characters")]
-=======
->>>>>>> branch4
     public required string Passwordhash { get; set; }
     [Required(ErrorMessage = "Role is required")]
     public UserRole Role { get; set; }

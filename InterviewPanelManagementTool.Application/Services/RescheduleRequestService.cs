@@ -1,11 +1,10 @@
 using InterviewPanelManagementTool.Application.DTOs.RescheduleRequest;
-using InterviewPanelManagementTool.Application.Interfaces.Services;
-using InterviewPanelManagementTool.Application.Interfaces.Repositories;
+using InterviewPanelManagementTool.Application.Interfaces;
 using InterviewPanelManagementTool.Domain.Entities;
 
 using AutoMapper;
 
-namespace InterviewPanelManagementTool.Application.Services.RescheduleRequests
+namespace InterviewPanelManagementTool.Application.Services
 {
     public class RescheduleRequestService : IRescheduleRequestService
     {

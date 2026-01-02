@@ -1,7 +1,7 @@
 
 using InterviewPanelManagementTool.Domain.Entities;
 
-namespace InterviewPanelManagementTool.Application.Interfaces.Repositories;
+namespace InterviewPanelManagementTool.Application.Interfaces;
 public interface IRescheduleRequestRepository
 {
     Task<RescheduleRequest> AddAsync(RescheduleRequest request);

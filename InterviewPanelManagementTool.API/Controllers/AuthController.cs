@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using InterviewPanelManagementTool.Application.DTOs.Auth;
 using InterviewPanelManagementTool.Application.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -27,9 +28,19 @@ namespace InterviewPanelManagementTool.API.Controllers
         [HttpPost("change-password")]
         public async Task<IActionResult> ChangePassword(ChangePasswordDto dto)
         {
-            await _authService.ChangePasswordAsync(dto);
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+
+            if (userIdClaim == null)
+                return Unauthorized("UserId not found in token");
+
+            var userId = int.Parse(userIdClaim.Value);
+
+            await _authService.ChangePasswordAsync(userId, dto);
+
             return Ok(new { message = "Password changed successfully" });
         }
+
+
 
         [Authorize]
         [HttpPost("logout")]

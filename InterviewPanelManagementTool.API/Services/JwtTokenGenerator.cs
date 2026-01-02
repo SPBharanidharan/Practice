@@ -1,9 +1,9 @@
+using System.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using InterviewPanelManagementTool.Application.Interfaces;
 using InterviewPanelManagementTool.Domain.Entities;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Configuration;
 
 namespace InterviewPanelManagementTool.API.Services
@@ -28,12 +28,12 @@ namespace InterviewPanelManagementTool.API.Services
                 new Claim(ClaimTypes.Role, user.Role.ToString()),
                 new Claim("UserName", user.UserName)
             };
-            var key = new SymmetricSecurityKey(
+            var key = new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(
                 Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]!)
             );
-            var credentials = new SigningCredentials(
+            var credentials = new Microsoft.IdentityModel.Tokens.SigningCredentials(
                 key,
-                SecurityAlgorithms.HmacSha256
+                Microsoft.IdentityModel.Tokens.SecurityAlgorithms.HmacSha256
             );
             var token = new JwtSecurityToken(
                 issuer: _configuration["Jwt:Issuer"],

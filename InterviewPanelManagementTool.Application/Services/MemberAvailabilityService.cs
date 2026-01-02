@@ -17,9 +17,9 @@ public class MemberAvailabilityService : IMemberAvailabilityService
         _memberAvailabilityRepository = memberAvailabilityRepository;
         _mapper = mapper;
     }
-    public async Task<MemberAvailabilityDto> AddAvailabilityAsync( MemberAvailabilityCreateDto memberAvailabilityCreateDto)
+    public async Task<MemberAvailabilityDto> AddAvailabilityAsync(int memberId,MemberAvailabilityCreateDto memberAvailabilityCreateDto)
     {
-        if (memberAvailabilityCreateDto.Date < DateOnly.FromDateTime(DateTime.UtcNow))
+        if (memberAvailabilityCreateDto.Date <= DateOnly.FromDateTime(DateTime.UtcNow) && memberAvailabilityCreateDto.EndTime<=TimeOnly.FromDateTime(DateTime.Now))
         {
             throw new Exception("past dates can't be given");
         }
@@ -32,13 +32,13 @@ public class MemberAvailabilityService : IMemberAvailabilityService
 
 
         if (await IsOverlaped(
-            memberAvailabilityCreateDto.MemberId,
+            memberId,
             memberAvailabilityCreateDto.Date,
             memberAvailabilityCreateDto.StartTime,
             memberAvailabilityCreateDto.EndTime
         ))
         {
-            throw new Exception("Overlapping availability slot exists for this member");
+            throw new Exception("Overlapping, availability slot exists for this member");
         }
 
         var availability = _mapper.Map<MemberAvailability>(memberAvailabilityCreateDto);
@@ -62,6 +62,22 @@ public class MemberAvailabilityService : IMemberAvailabilityService
     public async Task<List<MemberAvailabilityDto>> GetAvailabilityByMemberIdAsync(int memberId)
     {
         var availabilities = await _memberAvailabilityRepository.GetMemberAvailabulitiesByIdAsync(memberId);
+        var currentDateTime_=DateTime.Now;  // local computer timings (24hours)
+        bool hasUpdates=false;
+        foreach(var availability in availabilities)
+        {
+            if (availability.AvailabilityStatus != AvailabilityStatus.Available)
+            {
+                continue;
+            }
+            var endDateTime=availability.Date.ToDateTime(availability.EndTime);
+            if (endDateTime < currentDateTime_)
+            {
+                hasUpdates=true;
+                availability.AvailabilityStatus=AvailabilityStatus.Expired;
+            }
+        }
+        await _memberAvailabilityRepository.SaveChanges();
         return _mapper.Map<List<MemberAvailabilityDto>>(availabilities);
     }
 
@@ -83,18 +99,7 @@ public class MemberAvailabilityService : IMemberAvailabilityService
         {
             throw new Exception("Start time must be less than end time");
         }
-
-
-
-        if (await IsOverlaped(
-            availability.MemberId,
-            memberAvailabilityUpdateDto.Date,
-            memberAvailabilityUpdateDto.StartTime,
-            memberAvailabilityUpdateDto.EndTime
-        ))
-        {
-            throw new Exception("Overlapping time slot already exists");
-        }
+       
 
 
         availability.Date = memberAvailabilityUpdateDto.Date;
@@ -119,7 +124,12 @@ public class MemberAvailabilityService : IMemberAvailabilityService
             throw new InvalidOperationException("Booked availability cannot be cancelled");
         }
 
-        availability.AvailabilityStatus = AvailabilityStatus.Cancelled;
-        await _memberAvailabilityRepository.UpdateAvailabilityAsync(availability);
+        await _memberAvailabilityRepository.CancelAvailabilityAsync(availability);
+    }
+
+    public async Task<List<MemberAvailabilityDto>> GetAllMemberAvailabilitiesAsync()
+    {
+        var availabilities=await _memberAvailabilityRepository.GetAllAsync();
+        return _mapper.Map<List<MemberAvailabilityDto>>(availabilities);
     }
 }

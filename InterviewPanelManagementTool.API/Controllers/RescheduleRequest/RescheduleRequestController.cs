@@ -1,5 +1,5 @@
 using InterviewPanelManagementTool.Application.DTOs.RescheduleRequest;
-using InterviewPanelManagementTool.Application.Interfaces.Services;
+using InterviewPanelManagementTool.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
@@ -9,7 +9,7 @@ namespace InterviewPanelManagementTool.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize]
+    // [Authorize]
    
     public class RescheduleRequestController : ControllerBase
     {
@@ -51,7 +51,7 @@ namespace InterviewPanelManagementTool.API.Controllers
 
         
         [HttpGet("all-Request")]
-        [Authorize(Roles = "Admin")]
+        // [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAllRequest()
         {
             var result = await _service.GetAllRequestAsync();

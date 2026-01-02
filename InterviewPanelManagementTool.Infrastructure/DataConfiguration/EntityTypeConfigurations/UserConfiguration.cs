@@ -24,7 +24,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
 
         builder.Property(u => u.Passwordhash)
                .IsRequired()
-               .HasMaxLength(16);
+               .HasMaxLength(255);
 
 
 
@@ -64,5 +64,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
                .WithOne(r => r.ProcessedByAdmin)
                .HasForeignKey(r => r.ProcessedByAdminId)
                .OnDelete(DeleteBehavior.Restrict);
+
+       
     }
 }

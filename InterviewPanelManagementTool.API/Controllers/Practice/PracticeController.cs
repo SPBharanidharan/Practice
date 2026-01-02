@@ -1,5 +1,5 @@
 using InterviewPanelManagementTool.Application.DTOs.Practice;
-using InterviewPanelManagementTool.Application.Interfaces.Services;
+using InterviewPanelManagementTool.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 
@@ -7,7 +7,7 @@ namespace InterviewPanelManagementTool.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-[Authorize(Roles = "Admin")]
+// [Authorize(Roles = "Admin")]
 public class PracticesController : ControllerBase
 {
     private readonly IPracticeService _service;

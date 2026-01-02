@@ -41,9 +41,10 @@ public class AuthService : IAuthService
         };
     }
 
-    public async Task ChangePasswordAsync(ChangePasswordDto dto)
+
+    public async Task ChangePasswordAsync(int userId, ChangePasswordDto dto)
     {
-        var user = await _userRepository.GetByIdAsync(dto.UserId);
+        var user = await _userRepository.GetByIdAsync(userId);
 
         if (user == null)
             throw new KeyNotFoundException("User not found");
@@ -55,6 +56,7 @@ public class AuthService : IAuthService
         user.IsFirstLogin = false;
 
         await _userRepository.UpdateAsync(user);
+        await _userRepository.SaveChangesAsync();
     }
-}
 
+}

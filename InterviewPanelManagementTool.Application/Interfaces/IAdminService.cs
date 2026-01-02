@@ -9,4 +9,5 @@ public interface IAdminService
     Task<UserDto> CreateUserAsync(UserCreateDto dto, int adminId);
     Task<List<UserDto>> GetAllUsersAsync();
     Task ToggleUserStatusAsync(int userId);
+    Task<UserDto> UpdateUserAsync(int userId, UserUpdateDto dto, int adminId);
 }

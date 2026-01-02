@@ -14,12 +14,6 @@ public class Candidate
     [Required(ErrorMessage = "Position Id is required")]
     public int PositionId { get; set; }
     public DateTime CreatedAt { get; set; }
-
-<<<<<<< HEAD
-
-
-=======
->>>>>>> branch4
     public Practice Practice { get; set; } = null!;
     public Position Position { get; set; } = null!;
     public ICollection<InterviewBooking> InterviewBookings { get; set; } = new List<InterviewBooking>();

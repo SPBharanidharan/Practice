@@ -6,5 +6,5 @@ namespace InterviewPanelManagementTool.Application.Interfaces;
 public interface IAuthService
 {
     Task<LoginResponseDto> LoginAsync(UserLoginDto dto);
-    Task ChangePasswordAsync(ChangePasswordDto dto);
+    Task ChangePasswordAsync(int userId, ChangePasswordDto dto);
 }

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace InterviewPanelManagementTool.Infrastructure.DataConfiguration.Migrations
+namespace InterviewPanelManagementTool.Infrastructure.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration
@@ -85,9 +85,9 @@ namespace InterviewPanelManagementTool.Infrastructure.DataConfiguration.Migratio
                 {
                     UserId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Passwordhash = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    Passwordhash = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false),
                     Role = table.Column<int>(type: "int", nullable: false),
                     PracticeId = table.Column<int>(type: "int", nullable: true),
                     DesignationPositionId = table.Column<int>(type: "int", nullable: true),

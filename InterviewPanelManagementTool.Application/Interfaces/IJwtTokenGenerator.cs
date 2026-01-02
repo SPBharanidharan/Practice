@@ -5,5 +5,5 @@ namespace InterviewPanelManagementTool.Application.Interfaces;
 
 public interface IJwtTokenGenerator
 {
-    string GenerateToken(User user);
+    public string GenerateToken(User user);
 }

@@ -5,7 +5,7 @@ namespace InterviewPanelManagementTool.Application.Interfaces;
 
 public interface IMemberAvailabilityService
 {
-    Task<MemberAvailabilityDto> AddAvailabilityAsync(MemberAvailabilityCreateDto memberAvailabilityCreateDto);
+    Task<MemberAvailabilityDto> AddAvailabilityAsync(int memberId,MemberAvailabilityCreateDto memberAvailabilityCreateDto);
 
     Task<List<MemberAvailabilityDto>> GetAvailabilityByMemberIdAsync(int memberId);
 
@@ -15,5 +15,5 @@ public interface IMemberAvailabilityService
     Task<MemberAvailabilityDto> GetAvailabilityByIdAsync(int availabilityId);
     
     Task CancelAvailabilityAsync(int availabilityId);
-    
+    Task<List<MemberAvailabilityDto>> GetAllMemberAvailabilitiesAsync();
 }
